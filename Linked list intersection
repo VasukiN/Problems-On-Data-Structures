@@ -1,0 +1,46 @@
+//Linked List Intersection
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+    class linkedlist_Intersection
+    {
+        public static List<int> InterscetionOfTwoList(List<int> A, List<int> B)
+        {
+            List<int> C = new List<int>();
+            for (int i = 0; i < B.Count; i++)
+            {
+                if (A.Contains(B[i]))
+                {
+                    C.Add(A[i]);
+                }
+            }
+
+            return C;
+        }
+        public static void Main(string[] args)
+        {
+            List<int> A = new List<int>();
+            List<int> B = new List<int>();
+            List<int> C = new List<int>();
+            Console.WriteLine("Please enter the elements into the first list");
+            for (int i = 0; i < 5; i++)
+                A.Add(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine("Please enter the second list element ");
+            for (int i = 0; i < 3; i++)
+                B.Add(Convert.ToInt32(Console.ReadLine()));
+            //A.Add(Convert.ToInt32(Console.ReadLine()));
+            C = InterscetionOfTwoList(A, B);
+            Console.WriteLine("Intersection of two lists are");
+            for (int i = 0; i < C.Count; i++)
+            {
+                Console.WriteLine(C[i]);
+            }
+        }
+    }
+}
+
