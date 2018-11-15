@@ -1,0 +1,42 @@
+//PROBELM STATEMENT LINK - https://www.geeksforgeeks.org/reconstruct-the-array-by-replacing-arri-with-arri-11-m/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+
+namespace Defect_Detection_Version1
+{
+    public static class RenamingFolder
+    {
+        public static void RenamingTheFolder()
+        {
+            int count = 1;
+            string[] fileName = Directory.GetDirectories("D://");
+            string fullpath = "D://";
+            for (int i = 0; i < fileName.Length; i++)
+            {
+                Process cmd = new Process();
+                cmd.StartInfo.FileName = "cmd.exe";
+                cmd.StartInfo.WorkingDirectory = "D://";
+                string[] getOnlyFolderName = fileName[i].Split('/');
+                int length = getOnlyFolderName.Length;
+                if (getOnlyFolderName[length - 1] == "temp")
+                {
+                    string temp = string.Format("{0}{1}", getOnlyFolderName[length - 1] + "_Training", count);
+                    while (Directory.Exists(fullpath + temp))
+                    {
+                        count++;
+                        temp = string.Format("{0}{1}", getOnlyFolderName[length - 1] + "_Training", count);
+                    }
+                    cmd.StartInfo.Arguments = @"/C REN" + " " + getOnlyFolderName[length - 1] + " " + getOnlyFolderName[length - 1] + "_Training"+count + "";
+                    cmd.Start();
+                    cmd.WaitForExit();
+                }
+            }
+            
+        }
+    }
+}
