@@ -1,0 +1,66 @@
+// Problem statement -https://practice.geeksforgeeks.org/problems/combine-the-strings/0
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+    class CombineTheString
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter the number of test cases");
+            int test_case = Convert.ToInt32(Console.ReadLine());
+            for (int k = 0; k < test_case; k++)
+            {
+                Console.WriteLine("Please enter the number of words");
+                int num_words = Convert.ToInt32(Console.ReadLine());
+                string[] words = new string[num_words];
+                for (int p = 0; p < num_words; p++)
+                {
+                    words[p] = Console.ReadLine();
+                }
+                int i = 0;
+                int j;
+                string array1;
+                string array2, array_last, array_first;
+                int length_combined_string = 0;
+                while (i < words.Length)
+                {
+
+                    for (j = i + 1; j < words.Length; j++)
+                    {
+
+                        array1 = words[i];
+                        array2 = words[j];
+                        array_last = words[words.Length - 1];
+                        array_first = words[0];
+                        int array1_len = array1.Length;
+                        if (array1[array1_len - 1] == array2[0])
+                        {
+
+                            length_combined_string += array1_len;
+
+                        }
+                        else if (array_last[array_last.Length - 1] == array_first[0])
+                        {
+                            length_combined_string += array_last.Length;
+                        }
+                        else
+                        {
+                            length_combined_string = 0;
+                        }
+                        //j = i + 1;
+                    }
+                    i++;
+                }
+                Console.WriteLine("Length of the combined string is {0}", length_combined_string);
+
+            }
+
+        }
+    }
+}
