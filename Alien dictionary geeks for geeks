@@ -1,0 +1,70 @@
+// Probelem Statement - https://practice.geeksforgeeks.org/problems/alien-dictionary/1
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+    class Alien_Dictionary
+    {
+        static int total_char = 0;
+        public static void Main(string[] args)
+        {
+            int i, no_dic_char, totalWords;
+            Console.WriteLine("Enter the number of words in dictionary");
+            totalWords = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Please enter the total number of characters in your dic");
+            no_dic_char = Convert.ToInt32(Console.ReadLine());
+            string[] dict = new string[totalWords];
+            for (i = 0; i < totalWords; i++)
+            {
+                dict[i] = Console.ReadLine();
+            }
+
+            //Console.WriteLine("Please enter the strings to the dictionary");
+            char[] charArray = dict.SelectMany(x => x.ToCharArray()).ToArray();
+            Array.Sort(charArray);
+            char[] distinctArray = charArray.Distinct().ToArray();
+            //Console.WriteLine(charArray)
+            List<char> ListArray = new List<char>();
+            Console.WriteLine("It is implemented using the distinct function");
+            foreach (char s in distinctArray)
+            {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine("Output is implemented using the linked list datastructure");
+            ListArray.Add(charArray[0]);
+
+            for (i = 1; i < charArray.Length; i++)
+            {
+
+                if (!(ListArray.Contains(charArray[i])))
+                    ListArray.Add(charArray[i]);
+                //Console.WriteLine();
+
+            }
+            foreach (char t in ListArray)
+                Console.WriteLine(t);
+            //int p = charArray.Length-1;
+            int p;
+            for (p = 0; p < charArray.Length - 1; p++)
+            {
+
+                if (charArray[p] != charArray[p + 1])
+                {
+                    Console.WriteLine("Characters in dictionary are {0}", charArray[0]);
+                    Console.WriteLine(charArray[p]);
+                    charArray[0] = charArray[p + 1];
+
+                }
+
+            }
+
+
+            Console.ReadLine();
+        }
+    }
+}
