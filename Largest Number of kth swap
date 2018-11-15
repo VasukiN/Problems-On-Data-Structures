@@ -1,0 +1,36 @@
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+
+    class Largest_Number_kthSwap
+    {
+        public static void Main(string[] args)
+        {
+            String S = "3435335";
+            char[] CharArray = S.SelectMany(x => x.ToString()).ToArray();
+            int n = CharArray.Length;
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (CharArray[i] <= CharArray[j])
+                    {
+                        char temp = CharArray[j];
+                        CharArray[j] = CharArray[i];
+                        CharArray[i] = temp;
+                    }
+                }
+            }
+            string s1 = new string(CharArray);
+            Console.WriteLine(s1);
+            Console.ReadLine();
+        }
+    }
+}
+
