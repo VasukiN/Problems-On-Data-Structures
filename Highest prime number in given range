@@ -1,0 +1,113 @@
+// Problem statement - https://www.geeksforgeeks.org/find-highest-occurring-digit-prime-numbers-range/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+
+    class FindingHighestPrimeInRange
+    {
+        public static int[] FindingPrimeNumber(int start_range, int end_range)
+        {
+            int[] prime_numbers = new int[end_range / 2];
+            int array_index = 0;
+            //int[] Not_prime_numbers = new int[end_range];
+            int oddnumber_index = 0;
+            for (int number = start_range; number <= end_range - 1; number = (2 * oddnumber_index + 1))
+            {
+                if (number == 1)
+                    break;
+                int divide_by;
+                for (divide_by = 2; divide_by <= number; divide_by++)
+                {
+                    if (number != divide_by)
+                    {
+                        if ((number % divide_by) == 0)
+                            break;
+                        //else if(!(prime_numbers.Contains(i)))
+                        //prime_numbers[k] = i;
+                        //j++;
+                    }
+                }
+                oddnumber_index++;
+                if (!(prime_numbers.Contains(number)) && ((number % divide_by) != 0))
+                    prime_numbers[array_index] = number;
+                array_index++;
+
+            }
+            return prime_numbers.ToArray();
+        }
+
+        public static int HighestPrimeNumber(int start_range, int end_range)
+        {
+
+            int[] prime_numbers = FindingPrimeNumber(start_range, end_range);
+            int k = prime_numbers.Length; //int high = 0;
+            if (end_range <= 10)
+            {
+                while (prime_numbers[k - 1] == 0)
+                {
+                    if (prime_numbers[k - 1] == 0)
+                    {
+                        Array.Resize(ref prime_numbers, k - 1);
+                        k = prime_numbers.Length;
+                    }
+
+                }
+                return prime_numbers[k - 1];
+            }
+
+            else
+            {
+                int repeated_number = 0;
+                int[] digits = new int[] { 1, 2, 3, 4, 5, 6 };
+                int[] prime_chara_array = new int[(prime_numbers.Length + 5)];
+                int m = 0; int count2 = 0;
+                // This piece of code is used to store the each number into charcater array means if number is 54 than its stores 5 and 4 into character array.
+                for (int i = 0; i < prime_numbers.Length; i++)
+                {
+                    int number = prime_numbers[i];
+                    while (number > 0)
+                    {
+                        int remainder = number % 10;
+                        prime_chara_array[m] = remainder;
+                        number = number / 10;
+                        m++;
+                    }
+                }
+                for (int j = 0; j < digits.Length; j++)
+                {
+                    int count1 = 0; //repeated_number= 0;
+                    for (int i = 0; i < prime_chara_array.Length; i++)
+                    {
+                        if (prime_chara_array[i] == digits[j])
+                        {
+                            count1++;
+
+                        }
+                    }
+                    if (count1 > count2)
+                    {
+                        count2 = count1;
+                        repeated_number = digits[j];
+                    }
+                }
+                return repeated_number;
+            }
+        }
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter the start range and end range of the prime number to find out the highest in the range");
+            Console.WriteLine("Please make sure to enter the number starts from TWO");
+            int start_range = Convert.ToInt32(Console.ReadLine());
+            int end_range = Convert.ToInt32(Console.ReadLine());
+            int high = HighestPrimeNumber(start_range, end_range);
+            Console.WriteLine("Highest prime number is {0}", high);
+            Console.ReadLine();
+
+        }
+    }
+}
