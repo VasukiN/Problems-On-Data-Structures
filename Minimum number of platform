@@ -1,0 +1,75 @@
+Finding minimum number of platforms - https://www.geeksforgeeks.org/minimum-number-platforms-required-railwaybus-station/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // int n = 0;
+            int n;
+
+
+
+            Console.WriteLine("Please enter the number of test cases");
+            int t = Convert.ToInt32(Console.ReadLine());
+            t = t--;
+            for (int k = 0; k < t; k++)
+            {
+
+                Console.WriteLine("Please enter the number of trains");
+                n = Convert.ToInt32(Console.ReadLine());
+                int[] arrival = new int[n];
+                int[] dept = new int[n];
+                Console.WriteLine("Please enter the train arrival timings");
+                int i, j;
+                for (i = 0; i < n; i++)
+                {
+                    arrival[i] = Convert.ToInt32(Console.ReadLine());
+                    //arrival[i] = arr;
+                    //Console.Write(arrival[i]);
+                }
+                //Console.WriteLine(arrival[i]);
+                Console.WriteLine("Please enter the train departure timings");
+                for (j = 0; j < n; j++)
+                {
+                    dept[j] = Convert.ToInt32(Console.ReadLine());
+                    //Console.Write(dept[j]);
+                    //if (dept[j] > arrival[j])
+                    //dept[j] += 2400;
+                }
+                //if (dept[j] > arrival[j])
+                //dept[j] += 2400;
+
+                Array.Sort(arrival);
+                Array.Sort(dept);
+                int start1 = 0, start2 = 0;
+                int count = 0;
+                //int counter_final = 1;
+                while (start1 < n && start2 < n)
+                {
+                    if (arrival[start1] < dept[start2])
+                    {
+                        count++;
+                        start1++;
+                        //if (count > counter_final)
+                        //counter_final = count;
+                    }
+                    else
+                    {
+                        count--;
+                        start2++;
+                    }
+                }
+                Console.WriteLine("Minimum Number of platform required are: {0}", count);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
