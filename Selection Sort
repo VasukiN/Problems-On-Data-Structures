@@ -1,0 +1,44 @@
+//Selection Sort - 
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+    class Selection
+    {
+        public static void sort(int[] array)
+        {
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                int min_t = i;
+                for (int j = i + 1; j < array.Length; j++)
+                    if (array[j] < array[min_t])
+                        min_t = j;
+                int temp = array[min_t];
+                array[min_t] = array[i];
+                array[i] = temp;
+            }
+        }
+        public static void print(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+                Console.WriteLine(array[i]);
+        }
+        public static void Main(string[] args)
+        {
+            int[] array = new int[] { 64, 25, 12, 22, 11 };
+            Console.WriteLine("Array needs to be sorted");
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.WriteLine(array[i]);
+            }
+            Console.WriteLine("Sorted Array is");
+            sort(array);
+            print(array);
+        }
+    }
+}
