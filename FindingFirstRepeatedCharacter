@@ -1,0 +1,43 @@
+//PROBELM STATEMENT https://www.geeksforgeeks.org/find-the-first-repeated-character-in-a-string/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FirstRepeatedchar
+{
+    class Program
+    {
+        public static char FindFirstRepeatedCharacter(string name)
+        {
+            char first='\0';
+            for (int i = 0; i < name.Length; i++)
+            {
+                //first = name[i];
+                for (int j = i+1; j < name.Length; j++)
+                {
+                    if (Char.Equals(name[i], name[j]))
+                    {
+                        first = name[i];
+                        return first;
+                    }
+                    
+                }
+                
+            }
+            return '\0';
+        }
+        static void Main(string[] args)
+        {
+            string name = "aabcdc";
+            char c = FindFirstRepeatedCharacter(name);
+            Console.WriteLine("First Repeated character is {0}", c);
+            Console.ReadLine();
+            
+        }
+    }
+}
+
+
