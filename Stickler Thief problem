@@ -1,0 +1,64 @@
+//Problem statement - https://practice.geeksforgeeks.org/problems/stickler-theif/0
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+namespace FindingMinimumPlatformfortrain
+{
+    class FindingHighestSum
+    {
+        static int GetMax(int first, int second)
+        {
+            if (first > second)
+                return first;
+            else
+                return second;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter the number of test cases");
+            int t = Convert.ToInt32(Console.ReadLine());
+            for (int k = 0; k < t; k++)
+            {
+                Console.WriteLine("Please enter the number of element in the array");
+                int n = Convert.ToInt32(Console.ReadLine());
+                //List<int> A = new List<int>();
+                //List<int> B = new List<int>();
+                int i, j;
+
+                int SumEven = 0, SumOdd = 0;
+                ArrayList A1 = new ArrayList();
+                Console.WriteLine("Please enter the number of element ");
+                for (i = 0; i < n; i++)
+                {
+                    A1.Add(Convert.ToInt32(Console.ReadLine()));
+
+                }
+                for (j = 0; j < n; j = i = j + 2)
+                {
+
+                    //int SumEven = 0;
+                    SumEven = SumEven + (Convert.ToInt32(A1[j]));
+                    //SumEven += SumEven;
+
+                }
+                for (int m = 1; m < n; m = m + 2)
+                {
+                    //int SumOdd = 0;
+                    SumOdd = SumOdd + (Convert.ToInt32(A1[m]));
+                    //SumOdd += SumOdd;
+                }
+                //int FirstCons = A.Sum();
+                //int SecondCons = B.Sum();
+                int Maximum_amount = GetMax(SumEven, SumOdd);
+                Console.WriteLine("Maximum amount thief can get from alternative house is {0}", Maximum_amount);
+                Console.ReadLine();
+
+
+            }
+
+        }
+    }
+}
