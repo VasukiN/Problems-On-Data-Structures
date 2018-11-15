@@ -1,0 +1,35 @@
+//https://www.geeksforgeeks.org/highest-power-of-two-that-divides-a-given-number/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProgramSolving
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int number; int NUM = 2;
+            Console.WriteLine("Please enter the number which is divisible by 2");
+            number = Convert.ToInt32(Console.ReadLine());
+            //List<int> divisibleByTwo = new List<int>();
+            int HighestNumber = 0;
+            while (NUM < number)
+            {
+                if (number % NUM == 0)
+                {
+                    HighestNumber = NUM;
+                }
+                else
+                {
+                    NUM = NUM * 2;
+                }
+                NUM = NUM * 2;
+            }
+            Console.WriteLine("Highest Number divisible By 2 is  {0}  ", HighestNumber);
+            Console.ReadLine();
+        }
+    }
+}
