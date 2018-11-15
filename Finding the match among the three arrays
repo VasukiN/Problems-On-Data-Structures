@@ -1,0 +1,166 @@
+//Finding the match elements among the three arrays A+B=A+C /or A+B=B+C / C+B=C+A
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+    public class NumberofPossibleCheck
+    {
+        public static void PossibleWay(int[] A, int An, int[] B, int Bn, int[] C, int Cn, int number_of_arrays)
+        {
+            int k = 0; int count1 = 0;
+            int[] NewArray1;
+            int[] NewArray2;
+
+            while (k < number_of_arrays)
+            {
+                // Copy elements from A and B Array to new Array
+                if (k == 0)
+                {
+                    NewArray1 = new int[An + Bn];
+                    NewArray2 = new int[An + Cn];
+                    int count2 = NewArray1.Length;
+                    Array.Copy(A, NewArray1, An);
+                    Array.Copy(B, 0, NewArray1, An, Bn);
+                    // Copy elemenst from A and C Array to new Array
+                    Array.Copy(A, NewArray2, An);
+                    Array.Copy(C, 0, NewArray2, An, Cn);
+                    //Array.Copy()
+                    // Array sorting 
+                    Array.Sort(NewArray1);
+                    Array.Sort(NewArray2);
+                    if (NewArray1.Length > NewArray2.Length)
+                    {
+                        count1 = 0;
+                    }
+                    else if (NewArray1.Length == NewArray2.Length)
+                    {
+                        for (int i = 0; i < NewArray1.Length; i++)
+                            if (NewArray1[i] == NewArray2[i])
+                                count1++;
+                    }
+                    if (count1 == count2)
+                    {
+                        Console.WriteLine("Match found with this way: A+B = A+C");
+                        break;
+                    }
+                    else
+                    {
+                        Array.Clear(NewArray1, 0, NewArray1.Length);
+                        Array.Clear(NewArray2, 0, NewArray2.Length);
+                        count1 = 0;
+                        count2 = 0;
+                    }
+
+                }
+
+                else if (k == 1)
+                {
+                    NewArray1 = new int[Bn + Cn];
+                    NewArray2 = new int[Bn + An];
+                    int count2 = NewArray1.Length;
+                    Array.Copy(B, NewArray1, Bn);
+                    Array.Copy(C, 0, NewArray1, Bn, Cn);
+                    // Copy elemenst from A and C Array to new Array
+                    Array.Copy(B, NewArray2, Bn);
+                    Array.Copy(A, 0, NewArray2, Bn, An);
+                    // Array Sorting 
+                    Array.Sort(NewArray1);
+                    Array.Sort(NewArray2);
+                    if (NewArray1.Length > NewArray2.Length)
+                    {
+                        count1 = 0;
+                    }
+                    else if (NewArray1.Length == NewArray2.Length)
+                    {
+                        for (int i = 0; i < NewArray1.Length; i++)
+                            if (NewArray1[i] == NewArray2[i])
+                                count1++;
+                    }
+                    if (count1 == count2)
+                    {
+                        Console.WriteLine("Match found with this way: B+C = B+A");
+                        break;
+                    }
+                    else
+                    {
+                        Array.Clear(NewArray1, 0, NewArray1.Length);
+                        Array.Clear(NewArray2, 0, NewArray2.Length);
+                        count1 = 0;
+                        count2 = 0;
+                    }
+                }
+                else if (k == 2)
+                {
+                    NewArray1 = new int[Cn + An];
+                    NewArray2 = new int[Cn + Bn];
+                    int count2 = NewArray1.Length;
+                    Array.Copy(C, NewArray1, Cn);
+                    Array.Copy(A, 0, NewArray1, Cn, An);
+                    // Copy elemenst from A and C Array to new Array
+                    Array.Copy(C, NewArray2, Cn);
+                    Array.Copy(B, 0, NewArray2, Cn, Bn);
+                    // Array Sorting 
+                    Array.Sort(NewArray1);
+                    Array.Sort(NewArray2);
+                    if (NewArray1.Length > NewArray2.Length)
+                    {
+                        count1 = 0;
+                    }
+                    else if (NewArray1.Length == NewArray2.Length)
+                    {
+                        for (int i = 0; i < NewArray1.Length; i++)
+                            if (NewArray1[i] == NewArray2[i])
+                                count1++;
+                    }
+                    if (count1 == count2)
+                    {
+                        Console.WriteLine("Match found with this way: C+A = C+B");
+                        break;
+                    }
+                    else
+                    {
+                        Array.Clear(NewArray1, 0, NewArray1.Length);
+                        Array.Clear(NewArray2, 0, NewArray2.Length);
+                        count1 = 0;
+                        count2 = 0;
+                    }
+                }
+                k++;
+            }
+        }
+
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter the unsorted three arrays");
+            int number_of_arrays = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Please enter the first array length");
+            int An = Convert.ToInt32(Console.ReadLine());
+            int[] A = new int[An];
+            for (int i = 0; i < An; i++)
+            {
+                A[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Please enter the second array length");
+            int Bn = Convert.ToInt32(Console.ReadLine());
+            int[] B = new int[Bn];
+            for (int i = 0; i < Bn; i++)
+            {
+                B[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Please enter the third array length");
+            int Cn = Convert.ToInt32(Console.ReadLine());
+            int[] C = new int[Cn];
+            for (int i = 0; i < Cn; i++)
+            {
+                C[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            PossibleWay(A, An, B, Bn, C, Cn, number_of_arrays);
+            Console.ReadLine();
+        }
+    }
+}
