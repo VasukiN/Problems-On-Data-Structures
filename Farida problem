@@ -1,0 +1,42 @@
+// Problem statement link - https://www.spoj.com/problems/FARIDA/ 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+    class FaridaProblem
+    {
+        public static int findthemaximumGoldCoin(int[] array, int n)
+        {
+            int SumEven = 0; int SumOdd = 0;
+            for (int i = 0; i < n; i = i + 2)
+            {
+                SumEven = SumEven + array[i];
+            }
+            for (int j = 1; j < n; j = j + 2)
+            {
+                SumOdd = SumOdd + array[j];
+            }
+            if (SumEven > SumOdd)
+                return SumEven;
+            else
+                return SumOdd;
+        }
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter the number of monsters");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Please enter the number of gold coin that each monster can have");
+            int[] coins = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                coins[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            int highest = findthemaximumGoldCoin(coins, n);
+            Console.WriteLine("Highest Gold Coins collected is {0}", highest);
+        }
+    }
+}
