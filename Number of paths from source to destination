@@ -1,0 +1,88 @@
+//Problem statement -Number of paths from source to destination
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FindingMinimumPlatformfortrain
+{
+    class NoOfPath
+    {
+        static int path = 0;
+
+        public class Graph
+        {
+            int vertices;
+            public int i = 0;
+            public LinkedList<int>[] adj;
+
+            Graph(int v)
+            {
+                vertices = v;
+                adj = new LinkedList<int>[v];
+                for (int i = 0; i < v; i++)
+                {
+                    adj[i] = new LinkedList<int>();
+                }
+            }
+            public void addEgde(int source, int destination)
+            {
+                adj[source].AddFirst(destination);
+            }
+            public void countPaths(int source, int destination)
+            {
+                count(source, destination);
+                Console.WriteLine("Number of path between the source:" + source + "and destination" + destination + "are : " + path);
+            }
+            public void count(int source, int destination)
+            {
+
+                int adjacentvertex, nextadjacentvertex;
+                int adjacencylastvertex, nextadjacencylastvertex;
+                if (source == destination)
+                {
+                    path++;
+                }
+                else
+                {
+                    while (i < adj.Length - 1)
+                    {
+                        //adjacentvertex = adj[source].Find(
+                        adjacentvertex = adj[i].First.Value;
+                        nextadjacentvertex = adj[i + 1].First.Value;
+                        adjacencylastvertex = adj[i].Last.Value;
+                        nextadjacencylastvertex = adj[i + 1].Last.Value;
+                        i++;
+                        if (adjacentvertex < nextadjacentvertex)
+                        {
+                            count(nextadjacentvertex, destination);
+                        }
+                        if (adjacencylastvertex < nextadjacencylastvertex)
+                        {
+                            count(nextadjacentvertex, destination);
+                        }
+
+                    }
+
+                }
+            }
+            public static void Main(String[] args)
+            {
+                int vertices = 5;
+                Graph graph = new Graph(vertices);
+                graph.addEgde(0, 1);
+                graph.addEgde(0, 2);
+                graph.addEgde(1, 2);
+                graph.addEgde(1, 3);
+                graph.addEgde(3, 4);
+                graph.addEgde(2, 3);
+                graph.addEgde(4, 5);
+                int source = 0;
+                int destination = 5;
+                graph.countPaths(source, destination);
+            }
+
+        }
+    }
+}
